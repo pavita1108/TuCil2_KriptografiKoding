@@ -22,4 +22,26 @@ def ex_vigenereDecode(cipher_text, keyword):
     for i in range(len(cipher_text)):
         x = (ord(cipher_text[i]) - ord(key[i])) % 256
         orig_text.append(chr(x))
-    return("" . join(orig_text)) 
+    return(orig_text) 
+
+# path = "D:\ITB\Sem 6\Kriptografi Koding\TuCil1_KriptografiKoding\Tugas 1_Cloud Computing_18220027_Andreana.pdf"
+# bin_data = open(path, 'rb').read()
+# key = "AAA"
+# string = bin_data.decode('latin1')
+# a = ex_vigenereEncode(string, key)
+# aa = "" . join(a)
+# with open('encrypt', 'wb') as f: 
+#     f.write(aa.encode('latin1'))
+
+# bin_data = open('encrypt', 'rb').read()
+# c = bin_data.decode('latin1')
+# b = ex_vigenereDecode(c, key)
+# with open('a.pdf', 'wb') as f: 
+#     f.write(b.encode('latin1'))
+
+# string = 'naisgdsghjklzxcvbnm'
+# key = 'hqwertfdkcmrl;sf23bl;;[weq232324vvxvvbdfge]'
+# a = ex_vigenereEncode(string, key)
+# print(a)
+# b = ex_vigenereDecode(a,key)
+# print(b)
