@@ -1,18 +1,17 @@
-def key_scheduleuling(key):
-    scheduleule = [i for i in range(0, 256)]
-    
+def scheduling(key):
+    schedule = [i for i in range(0,256)]
+    key = key [::-1]
     i = 0
     for j in range(0, 256):
-        i = (i + scheduleule[j] + key[j % len(key)]) % 256
+        i = (i + schedule[j] + key[j % len(key)]) % 256
+        tmp = schedule[j]
+        schedule[j] = schedule[i]
+        schedule[i] = tmp
         
-        tmp = scheduleule[j]
-        scheduleule[j] = scheduleule[i]
-        scheduleule[i] = tmp
-        
-    return scheduleule
+    return schedule
     
 
-def stream_generation(schedule):
+def streamGeneration(schedule):
     i = 0
     j = 0
     while True:
@@ -30,8 +29,8 @@ def rc4Encode(text, key):
     text = [ord(char) for char in text]
     key = [ord(char) for char in key]
     
-    schedule = key_scheduleuling(key)
-    key_stream = stream_generation(schedule)
+    schedule = scheduling(key)
+    key_stream = streamGeneration(schedule)
     
     cipher_text = []
     for char in text:
@@ -45,8 +44,8 @@ def rc4Decode(ciphertext, key):
     ciphertext = [ord(char) for char in ciphertext]
     key = [ord(char) for char in key]
     
-    schedule = key_scheduleuling(key)
-    key_stream = stream_generation(schedule)
+    schedule = scheduling(key)
+    key_stream = streamGeneration(schedule)
     
     plaintext = []
     for char in ciphertext:
@@ -54,3 +53,9 @@ def rc4Decode(ciphertext, key):
         plaintext.append(chr(dec))
     
     return plaintext
+
+# a = 'haisadadada'
+# b = 'absddba'
+# aa= rc4Encode(a,b)
+
+# print(aa)
